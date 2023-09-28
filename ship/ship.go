@@ -19,6 +19,7 @@ var (
 func ExtractOrderQty(orderQtyStr string) (int, error) {
 	orderQty, err := strconv.Atoi(orderQtyStr)
 	if err != nil {
+		// This error is not handled anywhere but we know it's a format error
 		return 0, fmt.Errorf("wrong input: %w: %v", ErrOrderQtyInvalidFormat, err)
 	}
 
@@ -43,6 +44,7 @@ func ExtractPackSizes(packSizesStr string) ([]int, error) {
 	for i, packSizeStr := range packSizesStrList {
 		packSize, err := strconv.Atoi(packSizeStr)
 		if err != nil {
+			// This error is not handled anywhere but we know it's a format error
 			return nil, fmt.Errorf("wrong input: %w: %v", ErrPackSizesInvalidFormat, err)
 		}
 		if packSize <= 0 {

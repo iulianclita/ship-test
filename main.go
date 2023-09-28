@@ -36,21 +36,18 @@ func main() {
 			log.Fatalf("failed to listen: %s\n", err)
 		}
 	}()
-	log.Print("Server Started")
+	log.Print("server started")
 
 	<-done
-	log.Print("Server Stopped")
+	log.Print("server stopped")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer func() {
-		// extra handling here
-		cancel()
-	}()
+	defer cancel()
 
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Fatalf("failed to shutdown the http server: %v", err)
 	}
-	log.Print("Server Shutdown Successfully")
+	log.Print("server shutdown successfully")
 }
 
 type response struct {
