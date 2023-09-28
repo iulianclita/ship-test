@@ -76,6 +76,13 @@ func shipPacks(w http.ResponseWriter, r *http.Request) {
 			}); err != nil {
 				log.Printf("failed to encode http response: %v", err)
 			}
+		default:
+			w.WriteHeader(http.StatusInternalServerError)
+			if err := json.NewEncoder(w).Encode(response{
+				Error: err.Error(),
+			}); err != nil {
+				log.Printf("failed to encode http response: %v", err)
+			}
 		}
 		return
 	}
@@ -94,6 +101,13 @@ func shipPacks(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			if err := json.NewEncoder(w).Encode(response{
 				Error: ship.ErrPackSizeInvalidValue.Error(),
+			}); err != nil {
+				log.Printf("failed to encode http response: %v", err)
+			}
+		default:
+			w.WriteHeader(http.StatusInternalServerError)
+			if err := json.NewEncoder(w).Encode(response{
+				Error: err.Error(),
 			}); err != nil {
 				log.Printf("failed to encode http response: %v", err)
 			}
