@@ -10,7 +10,7 @@ fulfil each order.
 
 ### Usage
 In order to use this tool just start the local HTTP server by running `go run main.go` from the project root.
-Once the server is successfully started, navigate to `http://localhost:8080/ship?order_qty=520&pack_zies=100,200,300` for example and see the result in json format. The link above calculates the distribution of 500 ordered items while having at your disposal pack sizes of 100, 200 and 300 respectively. You should get back something like
+Once the server is successfully started, navigate to `localhost:8080/ship?order_qty=520&pack_sizes=100,200,300` for example and see the result in json format. The link above calculates the distribution of 500 ordered items while having at your disposal pack sizes of 100, 200 and 300 respectively. You should get back something like
 ```
 {
     300: 1, 
